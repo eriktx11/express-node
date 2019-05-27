@@ -45,7 +45,7 @@ const server = http.createServer((req, res) =>{
         return;
 
     }
-})
+});
 
 server.listen(port,hostname, () => {
     console.log("listenind in port: "+port);
