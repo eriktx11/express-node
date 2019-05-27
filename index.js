@@ -6,15 +6,12 @@ const path = require('path');
 
 const server = http.createServer((req, res) =>{
     console.log("Requesting "+req.url+" "+req.method);
-    //res.statusCode = 200;
 
-    //res.setHeader('Content-type','text/html');
-    //res.end('<html><body><h1>asd fasd</h1></body></html>');
 
     if(req.method == 'GET'){
         var fileUrl;
         if(req.url=='/') fileUrl = '/index.html';
-        else fileUrl = req.url;
+        else fileUrl = req.url
 
         var filePath = path.resolve('./public'+fileUrl);
         const fileExt = path.extname(filePath);
@@ -53,4 +50,3 @@ const server = http.createServer((req, res) =>{
 server.listen(port,hostname, () => {
     console.log("listenind in port: "+port);
 });
-
