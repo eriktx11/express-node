@@ -6,10 +6,10 @@ const path = require('path');
 
 const server = http.createServer((req, res) =>{
     console.log("Requesting "+req.url+" "+req.method);
-    res.statusCode = 200;
+    //res.statusCode = 200;
 
-    res.setHeader('Content-type','text/html');
-    res.end('<html><body><h1>asd fasd</h1></body></html>');
+    //res.setHeader('Content-type','text/html');
+    //res.end('<html><body><h1>asd fasd</h1></body></html>');
 
     if(req.method == 'GET'){
         var fileUrl;
