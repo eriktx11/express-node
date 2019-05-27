@@ -1,52 +1,35 @@
 const http = require('http');
-const hostname = 'localhost';
 const port = 3000;
+const hostname = 'localhost';
 const fs = require('fs');
 const path = require('path');
 
-const server = http.createServer((req, res) =>{
-    console.log("Requesting "+req.url+" "+req.method);
 
-
+const server = http.createServer((res,req) => {
+    
     if(req.method == 'GET'){
         var fileUrl;
-        if(req.url=='/') fileUrl = '/index.html';
+        if(req.url =='/') fileUrl = './index.html';
         else fileUrl = req.url;
 
         var filePath = path.resolve('./public'+fileUrl);
         const fileExt = path.extname(filePath);
+        
         if(fileExt == '.html'){
-            fs.exists(filePath, (exists)=> {
+            fs.exists(filePath, (exists)=>{
                 if(!exists){
                     res.statusCode = 404;
-                    res.setHeader('Content-type','text/html');
-                    res.end('<html><body><h1>Not found</h1></body></html>');
-
+                    console.log("Valid ");
+                    res.setHeader('Content-type', 'text/html');
+                    res.end('<html><body></h1>Nothing here</h1></doby></html>');
                     return;
-                }
-                res.statusCode = 200;
-                res.setHeader('Content-type','text/html');
-                fs.createReadStream(filePath).pipe(res);
-            })
+                    }
+            });
         }
-        else{
-            res.statusCode = 404;
-            res.setHeader('Content-type','text/html');
-            res.end('<html><body><h1>Not html file</h1></body></html>');
-
-            return;
-        }
-    }
-    else{
-        res.statusCode = 404;
-        res.setHeader('Content-type','text/html');
-        res.end('<html><body><h1>Not supported</h1></body></html>');
-
-        return;
 
     }
-});
 
-server.listen(port,hostname, () => {
-    console.log("listenind in port: "+port);
-});
+})
+
+server.listen(port,hostname);
+console.log("server running");
